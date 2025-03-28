@@ -23,7 +23,7 @@ To create a figure, insert the following html tag into the markdown file:
 
 ```md
 <figure>
-    <src>path-to-iamge</src>
+    <src>path-to-image-or-video</src>
     <alt>image alt text</alt>
     <caption>image caption</caption>
 </figure>
