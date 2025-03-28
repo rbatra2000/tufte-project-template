@@ -80,3 +80,7 @@ To generate run `uv run scripts/generate.py <path-to-markdown>` this will genera
 ### CSS
 
 The styling for generated web pages is in `style/tufte.css` based on a slightly modified stylesheet from [tufte-css](https://github.com/edwardtufte/tufte-css). Modifying this will allow you to make adjustments to the resulting webpage. Look at the tufte-css website to see how this is structured.
+
+### License
+
+Released under the MIT license.
