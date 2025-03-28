@@ -7,6 +7,9 @@ Generate an elegant research project webpage from a markdown template. This proj
 ### DISCLAIMER
 **This is a template I have duct-taped together for my own use.** _Use it with caution!_ That said, I do hope for others to use this & I will work on requests and review PRs. If you have suggestiosn, please share them.
 
+### Example
+Included is a file `sample.md` that is used to generate the [example project page](https://amritkwatra.com/research/splatoverflow) linked above. Assets to generate this webpage are included in the `assets` folder. Examining the structure of this sample could be a useful starting point for making your own website.
+
 ### Writing
 Currently, this template supports a few elements: sections, image figures, video figures, text, code snippets, sidenotes.
 
