@@ -1,0 +1,66 @@
+## Research Project Template
+
+Generate an elegant research project webpage from a markdown template. This project uses styling from [tufte.css](https://github.com/edwardtufte/tufte-css). 
+
+### Writing
+Currently, this template supports a few elements: sections, image figures, video figures, text, code snippets, sidenotes.
+
+#### Sections & Text
+You can create a new section using the following:
+
+```md
+## Section Name
+Text that is part of this very interesting section
+```
+
+#### Figures
+To create a figure, insert the following html tag into the markdown file:
+
+```md
+<figure>
+    <src>path-to-iamge</src>
+    <alt>image alt text</alt>
+    <caption>image caption</caption>
+</figure>
+```
+The image caption is rendered on the right-hand margin when the window is wide enough, and underneath the figure in narrow aspect ratios (e.g. mobile). 
+
+Depending on the file type specified in src (based on extension) the figure will render an image or video using html `<img>` or `<video>` tags.
+
+#### Sidenotes
+One of the nice things about Tufte's layout is extensive use of sidenotes. To make a sidenote in markdown, simply specify the following inline:
+```md
+Some text that wants to make a <sidenote><text>reference<text><note>Text that explains the reference.<note></sidenote> that helps provide the reader context
+```
+This renders the inner contents in `<note>` to the sidenote. All numbering should be automatic.
+
+#### Code Snippets 
+Code snippets are automatically created from any text within \``` \``` tick marks.
+
+### Frontmatter
+To generate the title, author list, affiliations and links the markdown must begin with some frontmatter in the following format:
+```md
+title: "FunkyName: Actual Title of Paper"
+venue: to appear at ACM Conf 2042
+authors:
+  - name: "Jay Doe"
+    affiliation: "Cornell Tech"
+  - name: "Jurgen Doe"
+    affiliation: "Cornell Tech" # note numbering for multiple common affiliations is done automatically. Currently only one affiliation per author is supported.
+  - name: "Jose Doe"
+    affiliation: "Cornell University"
+  - name: "Jamie Doe"
+    affiliation: "Cornell Tech"
+preprint: https://link-to-arXiv
+video: https://link-to-video
+publication: null # note null values will appear greyed out
+code: null  # note null values will appear greyed out
+```
+The frontmatter generates the first elements on the page.
+
+
+### Generating HTML
+
+First set up your python environment. I prefer using [uv](https://docs.astral.sh/uv/). `uv sync`
+
+To generate run `uv run scripts/generate.py <path-to-markdown>` this will generate an html file with the same name as the markdown file. To override, pass the filename using --name. 
