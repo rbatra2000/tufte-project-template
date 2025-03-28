@@ -13,12 +13,12 @@ remapper = {
 
 
 def generate_premble(x):
-    return """
+    return f"""
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="utf-8"/>
-                <title>{__x}</title>
+                <title>{x}</title>
                 <link rel="stylesheet" href="../style/tufte.css"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
             </head>
