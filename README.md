@@ -1,6 +1,11 @@
-## Research Project Template
+## Tufte Project Template
 
 Generate an elegant research project webpage from a markdown template. This project uses styling from [tufte.css](https://github.com/edwardtufte/tufte-css). 
+
+### DISCLAIMER
+This is a template I have duct-taped together for my own use. Use it with caution!
+
+That said, I do hope for others to use this & I will work on requests and review PRs. If you have suggestiosn, please share them.
 
 ### Writing
 Currently, this template supports a few elements: sections, image figures, video figures, text, code snippets, sidenotes.
@@ -61,6 +66,6 @@ The frontmatter generates the first elements on the page.
 
 ### Generating HTML
 
-First set up your python environment. I prefer using [uv](https://docs.astral.sh/uv/). `uv sync`
+First set up your python environment. I prefer using [uv](https://docs.astral.sh/uv/). Use `uv sync`, or use pip to install [marko](https://marko-py.readthedocs.io/en/latest/index.html) & [python-frontmatter](https://github.com/eyeseast/python-frontmatter).
 
-To generate run `uv run scripts/generate.py <path-to-markdown>` this will generate an html file with the same name as the markdown file. To override, pass the filename using --name. 
+To generate run `uv run scripts/generate.py <path-to-markdown>` this will generate an html file with the same name as the markdown file. To override, pass the filename using `--name`, i.e. `uv run scripts/generate.py <path-to-markdown> --name output` 
