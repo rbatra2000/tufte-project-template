@@ -26,7 +26,7 @@ code: null
   <src>assets/figone.png</src>
   <alt>Figure 1</alt>
   <caption>
-    _Figure 1._ _(a)_ A SplatOverflow scene, comprising a 3D Gaussian Splat aligned and registered onto a digital CAD model, acting as a boundary object to facilitate asynchronous troubleshooting tasks for hardware. _(b)_ A remote maintainer using SplatOverflow to explore a local user's hardware and author instructions for them to follow. _(c)_ A local user viewing the maintainer's instructions rendered as an overlay onto their hardware in their workspace and performing the specified action.
+    _Figure 1._ _(a)_ A SplatOverflow scene, comprising a 3D Gaussian Splat aligned and registered onto a digital CAD model, acting as a boundary object to facilitate asynchronous troubleshooting tasks for hardware. A local end-user can query technical documentation and past issues associated with the hardware by simply clicking on the parts in the SplatOverflow scene. If no solution is found, they can use SplatOverflow to request and receive help asynchronously from a remote maintainer. _(b)_ A remote maintainer uses SplatOverflow to explore a local end-user's hardware and author instructions for them to follow. _(c)_ A local end-user views the maintainer's instructions rendered as an overlay onto their hardware in their workspace and executes the specified action.
   </caption>
 </figure>
 
