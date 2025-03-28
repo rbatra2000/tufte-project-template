@@ -230,7 +230,7 @@ body {
 }
 
 /* Adds dark mode */
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     body {
         background-color: #151515;
         color: #ddd;
@@ -239,7 +239,7 @@ body {
         color: #65b0ee;
         transition: color 0.3s ease;
     }
-} */
+}
 
 h1 {
     font-weight: 400;

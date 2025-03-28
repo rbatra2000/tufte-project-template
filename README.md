@@ -2,8 +2,10 @@
 
 Generate an elegant research project webpage from a markdown template. This project uses styling from [tufte.css](https://github.com/edwardtufte/tufte-css). 
 
+[Here is an example website](https://amritkwatra.com/research/splatoverflow) generated using this template.
+
 ### DISCLAIMER
-This is a template I have duct-taped together for my own use. _Use it with caution!_ That said, I do hope for others to use this & I will work on requests and review PRs. If you have suggestiosn, please share them.
+**This is a template I have duct-taped together for my own use.** _Use it with caution!_ That said, I do hope for others to use this & I will work on requests and review PRs. If you have suggestiosn, please share them.
 
 ### Writing
 Currently, this template supports a few elements: sections, image figures, video figures, text, code snippets, sidenotes.
@@ -47,23 +49,26 @@ title: "FunkyName: Actual Title of Paper"
 venue: to appear at ACM Conf 2042
 authors:
   - name: "Jay Doe"
-    affiliation: "Cornell Tech"
+    affiliation: "University University"
   - name: "Jurgen Doe"
-    affiliation: "Cornell Tech" # note numbering for multiple common affiliations is done automatically. Currently only one affiliation per author is supported.
+    affiliation: "University University" # note numbering for multiple common affiliations is done automatically. Currently only one affiliation per author is supported.
   - name: "Jose Doe"
-    affiliation: "Cornell University"
+    affiliation: "Industry Industry"
   - name: "Jamie Doe"
-    affiliation: "Cornell Tech"
+    affiliation: "University University"
 preprint: https://link-to-arXiv
 video: https://link-to-video
 publication: null # note null values will appear greyed out
 code: null  # note null values will appear greyed out
 ```
-The frontmatter generates the first elements on the page.
-
+The frontmatter generates the first elements on the page. This project uses [python-frontmatter](https://github.com/eyeseast/python-frontmatter) to do this.
 
 ### Generating HTML
 
 First set up your python environment. I prefer using [uv](https://docs.astral.sh/uv/). Use `uv sync`, or use pip to install [marko](https://marko-py.readthedocs.io/en/latest/index.html) & [python-frontmatter](https://github.com/eyeseast/python-frontmatter).
 
 To generate run `uv run scripts/generate.py <path-to-markdown>` this will generate an html file with the same name as the markdown file. To override, pass the filename using `--name`, i.e. `uv run scripts/generate.py <path-to-markdown> --name output` 
+
+### CSS
+
+The styling for generated web pages is in `style/tufte.css` based on a slightly modified stylesheet from [tufte-css](https://github.com/edwardtufte/tufte-css). Modifying this will allow you to make adjustments to the resulting webpage. Look at the tufte-css website to see how this is structured.
