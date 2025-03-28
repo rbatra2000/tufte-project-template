@@ -33,6 +33,13 @@
     /* font-style: bold; */
 }
 
+.proc-venue{
+    font-size: 1rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .col-g{
     color: #3C9764;
 }

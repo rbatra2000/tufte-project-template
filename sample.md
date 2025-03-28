@@ -1,6 +1,6 @@
 ---
 title: "SplatOverflow: Asynchronous Hardware Troubleshooting"
-venue: to appear at ACM CHI 2025
+venue: To Appear in Proceedings of the 2025 ACM Computer-Human Interaction Conference (CHI’25)
 authors:
   - name: "Amritansh Kwatra"
     affiliation: "Cornell Tech"

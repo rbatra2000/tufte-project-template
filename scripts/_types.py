@@ -72,25 +72,35 @@ class Link:
         else:
             return f"<span class='newthought'><a class='unpop' href=''>{self.text}</a></span>"
 
+class Venue:
+    def __init__(self, venue):
+        self.venue = venue
+
+    def __str__(self):
+        return self.venue
+
+    def __html__(self):
+        return f"<p class='proc-venue'>{self.venue}</p>"
 
 class Metadata:
-    def __init__(self, title, authors, preprint, video, publication, code):
+    def __init__(self, title, authors, venue, preprint, video, publication, code):
         self.title = title
         self.authors = authors
+        self.venue = venue
         self.preprint = preprint
         self.video = video
         self.publication = publication
         self.code = code
     
     def __str__(self):
-        return f"Title: {self.title}\nAuthors: {str(self.authors)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
+        return f"Title: {self.title}\nAuthors: {str(self.authors)}\nVenue: {str(self.venue)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
 
     def format_links(self):
         inner_html = self.preprint.__html__() + self.video.__html__() + self.publication.__html__() + self.code.__html__()
         return f"<p class='links'>{inner_html}</p>"
 
     def __html__(self):
-        inner_html = self.title.__html__() + self.authors.__html__() + self.format_links()
+        inner_html = self.title.__html__() + self.authors.__html__() + self.venue.__html__() +  self.format_links()
         return f"<section id = 'title-main'>{inner_html}</section>"
         
 

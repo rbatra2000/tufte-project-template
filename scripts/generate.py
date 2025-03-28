@@ -2,7 +2,7 @@ import os
 import argparse
 import marko
 import frontmatter
-from _types import Title, Authors, Author, Link, Metadata
+from _types import Title, Authors, Author, Link, Metadata, Venue
 
 import re
 
@@ -21,9 +21,6 @@ def generate_premble(x):
                 <title>{__x}</title>
                 <link rel="stylesheet" href="../style/tufte.css"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="icon" href="../icons/favicon.ico" sizes="32x32">
-                <link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
-                <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
             </head>
 
             <body>
@@ -45,12 +42,13 @@ def parse_frontmatter(file_path):
     fm = frontmatter.loads(content)
     title = Title(fm['title'])
     authors = Authors([Author(author['name'], author['affiliation']) for author in fm['authors']])
+    venue = Venue(fm['venue'])
     preprint__link = Link("preprint", fm['preprint'])
     video__link = Link("video", fm['video'])
     publication__link = Link("publication", fm['publication'])
     code__link = Link("code", fm['code'])
     
-    metadata = Metadata(title, authors, preprint__link, video__link, publication__link, code__link)
+    metadata = Metadata(title, authors, venue, preprint__link, video__link, publication__link, code__link)
     return metadata
 
 def strip_frontmatter(content):
