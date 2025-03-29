@@ -26,6 +26,20 @@
     /* font-weight: bold; */
 }
 
+.award{
+    font-family: monospace;
+    font-size: 0.9rem;
+    padding-left: 0.5rem !important;
+    /* font-style: bold; */
+}
+
+.proc-award{
+    font-size: 1.25rem;
+    font-style: normal;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .venue{
     font-family: monospace;
     font-size: 0.9rem;

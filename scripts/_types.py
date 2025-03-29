@@ -72,6 +72,19 @@ class Link:
         else:
             return f"<span class='newthought'><a class='unpop' href=''>{self.text}</a></span>"
 
+class Award:
+    def __init__(self, award):
+        if award:
+            self.award = "<span class='col-a-emph'>🏅" + award + "</span>"
+        else:
+            self.award = None
+
+    def __str__(self):
+        return self.award
+
+    def __html__(self):
+        return f"<p class='proc-award'>{self.award}</p>"
+
 class Venue:
     def __init__(self, venue):
         self.venue = venue
@@ -81,11 +94,12 @@ class Venue:
 
     def __html__(self):
         return f"<p class='proc-venue'>{self.venue}</p>"
-
+    
 class Metadata:
-    def __init__(self, title, authors, venue, preprint, video, publication, code):
+    def __init__(self, title, authors, award, venue, preprint, video, publication, code):
         self.title = title
         self.authors = authors
+        self.award = award
         self.venue = venue
         self.preprint = preprint
         self.video = video
@@ -93,14 +107,23 @@ class Metadata:
         self.code = code
     
     def __str__(self):
-        return f"Title: {self.title}\nAuthors: {str(self.authors)}\nVenue: {str(self.venue)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
+        # TODO: ritikbatra: ugly solution but just to avoid this being breaking the site
+        if self.award.award:
+            return f"Title: {self.title}\nAuthors: {str(self.authors)}\nAward: {str(self.award)}\nVenue: {str(self.venue)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
+        else:
+            return f"Title: {self.title}\nAuthors: {str(self.authors)}\nVenue: {str(self.venue)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
+
 
     def format_links(self):
         inner_html = self.preprint.__html__() + self.video.__html__() + self.publication.__html__() + self.code.__html__()
         return f"<p class='links'>{inner_html}</p>"
 
     def __html__(self):
-        inner_html = self.title.__html__() + self.authors.__html__() + self.venue.__html__() +  self.format_links()
+        # TODO: ritikbatra: ugly solution but just to avoid this being breaking the site
+        if self.award.award:
+            inner_html = self.title.__html__() + self.authors.__html__() + self.award.__html__() + self.venue.__html__() + self.format_links()
+        else:
+            inner_html = self.title.__html__() + self.authors.__html__() + self.venue.__html__() + self.format_links()
         return f"<section id = 'title-main'>{inner_html}</section>"
         
 

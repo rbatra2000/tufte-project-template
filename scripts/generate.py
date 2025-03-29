@@ -1,7 +1,7 @@
 import argparse
 import marko
 import frontmatter
-from _types import Title, Authors, Author, Link, Metadata, Venue
+from _types import Title, Authors, Author, Link, Metadata, Venue, Award
 
 import re
 
@@ -41,13 +41,14 @@ def parse_frontmatter(file_path):
     fm = frontmatter.loads(content)
     title = Title(fm['title'])
     authors = Authors([Author(author['name'], author['affiliation']) for author in fm['authors']])
+    award = Award(fm['award'])
     venue = Venue(fm['venue'])
     preprint__link = Link("preprint", fm['preprint'])
     video__link = Link("video", fm['video'])
     publication__link = Link("publication", fm['publication'])
     code__link = Link("code", fm['code'])
     
-    metadata = Metadata(title, authors, venue, preprint__link, video__link, publication__link, code__link)
+    metadata = Metadata(title, authors, award, venue, preprint__link, video__link, publication__link, code__link)
     return metadata
 
 def strip_frontmatter(content):
