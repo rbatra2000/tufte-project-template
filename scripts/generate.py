@@ -41,7 +41,7 @@ def parse_frontmatter(file_path):
     fm = frontmatter.loads(content)
     title = Title(fm['title'])
     authors = Authors([Author(author['name'], author['affiliation']) for author in fm['authors']])
-    award = Award(fm['award'])
+    award = Award(fm['award']) if fm['award'] else None
     venue = Venue(fm['venue'])
     preprint__link = Link("preprint", fm['preprint'])
     video__link = Link("video", fm['video'])

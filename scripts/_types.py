@@ -74,10 +74,7 @@ class Link:
 
 class Award:
     def __init__(self, award):
-        if award:
-            self.award = "<span class='col-a-emph'>🏅" + award + "</span>"
-        else:
-            self.award = None
+        self.award = f"<span class='col-a-emph'>🏅{award}</span>"
 
     def __str__(self):
         return self.award
@@ -107,11 +104,17 @@ class Metadata:
         self.code = code
     
     def __str__(self):
-        # TODO: ritikbatra: ugly solution but just to avoid this being breaking the site
-        if self.award.award:
-            return f"Title: {self.title}\nAuthors: {str(self.authors)}\nAward: {str(self.award)}\nVenue: {str(self.venue)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
-        else:
-            return f"Title: {self.title}\nAuthors: {str(self.authors)}\nVenue: {str(self.venue)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
+        components = [
+            f"Title: {self.title}",
+            f"Authors: {str(self.authors)}",
+            *(f"Award: {str(self.award)}" if self.award else []),
+            f"Venue: {str(self.venue)}",
+            f"Preprint: {str(self.preprint)}",
+            f"Video: {str(self.video)}",
+            f"Publication: {str(self.publication)}",
+            f"Code: {str(self.code)}"
+        ]
+        return "\n".join(components)
 
 
     def format_links(self):
@@ -119,12 +122,15 @@ class Metadata:
         return f"<p class='links'>{inner_html}</p>"
 
     def __html__(self):
-        # TODO: ritikbatra: ugly solution but just to avoid this being breaking the site
-        if self.award.award:
-            inner_html = self.title.__html__() + self.authors.__html__() + self.award.__html__() + self.venue.__html__() + self.format_links()
-        else:
-            inner_html = self.title.__html__() + self.authors.__html__() + self.venue.__html__() + self.format_links()
-        return f"<section id = 'title-main'>{inner_html}</section>"
+        components = [
+            self.title.__html__(),
+            self.authors.__html__(),
+            *(self.award.__html__() if self.award else []),
+            self.venue.__html__(),
+            self.format_links()
+        ]
+        inner_html = ''.join(components)
+        return f"<section id='title-main'>{inner_html}</section>"
         
 
 class Section:
