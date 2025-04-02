@@ -82,11 +82,22 @@ class Venue:
     def __html__(self):
         return f"<p class='proc-venue'>{self.venue}</p>"
 
+class Award:
+    def __init__(self, award):
+        self.award = award
+
+    def __str__(self):
+        return self.award
+
+    def __html__(self):
+        return f"<p class='highlight_award'>{self.award}</p>"
+
 class Metadata:
-    def __init__(self, title, authors, venue, preprint, video, publication, code):
+    def __init__(self, title, authors, venue, award, preprint, video, publication, code):
         self.title = title
         self.authors = authors
         self.venue = venue
+        self.award = award
         self.preprint = preprint
         self.video = video
         self.publication = publication
@@ -100,7 +111,7 @@ class Metadata:
         return f"<p class='links'>{inner_html}</p>"
 
     def __html__(self):
-        inner_html = self.title.__html__() + self.authors.__html__() + self.venue.__html__() +  self.format_links()
+        inner_html = self.title.__html__() + self.authors.__html__() + self.venue.__html__() + self.award.__html__() + self.format_links()
         return f"<section id = 'title-main'>{inner_html}</section>"
         
 

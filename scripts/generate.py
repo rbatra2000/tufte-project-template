@@ -1,7 +1,8 @@
 import argparse
 import marko
 import frontmatter
-from _types import Title, Authors, Author, Link, Metadata, Venue
+from _types import Title, Authors, Author, Link, Metadata, Venue, Award
+from _utils import format_html
 
 import re
 
@@ -17,9 +18,9 @@ def generate_premble(x):
             <html lang="en">
             <head>
                 <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <title>{x}</title>
                 <link rel="stylesheet" href="../style/tufte.css"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
             </head>
 
             <body>
@@ -42,12 +43,13 @@ def parse_frontmatter(file_path):
     title = Title(fm['title'])
     authors = Authors([Author(author['name'], author['affiliation']) for author in fm['authors']])
     venue = Venue(fm['venue'])
+    award = Award(fm['award'])
     preprint__link = Link("preprint", fm['preprint'])
     video__link = Link("video", fm['video'])
     publication__link = Link("publication", fm['publication'])
     code__link = Link("code", fm['code'])
     
-    metadata = Metadata(title, authors, venue, preprint__link, video__link, publication__link, code__link)
+    metadata = Metadata(title, authors, venue, award, preprint__link, video__link, publication__link, code__link)
     return metadata
 
 def strip_frontmatter(content):
@@ -128,7 +130,6 @@ def parse_markdown(file_path):
     
     return f"<section>{content_sans_frontmatter}</section>"
 
-
 def main():
     """
     Main function to parse command line arguments and process markdown files.
@@ -142,13 +143,14 @@ def main():
     metadata = parse_frontmatter(args.markdown_file)
     content = parse_markdown(args.markdown_file)
 
-    html = generate_premble(metadata.title) + metadata.__html__() + content + SUFFIX
-
+    _html = generate_premble(metadata.title) + metadata.__html__() + content + SUFFIX
+    fmt_html = format_html(_html)
+    
     if args.name is None:
         args.name = args.markdown_file.split('/')[-1].split('.')[0]
 
     with open(f"{args.name}.html", "w+") as outfile:
-        outfile.write(html)
+        outfile.write(fmt_html)
 
     return None
 

@@ -1,6 +1,7 @@
 ---
 title: "SplatOverflow: Asynchronous Hardware Troubleshooting"
 venue: To Appear in Proceedings of the 2025 ACM Computer-Human Interaction Conference (CHI’25)
+award: Honorable Mention for Best Paper
 authors:
   - name: "Amritansh Kwatra"
     affiliation: "Cornell Tech"
@@ -84,6 +85,8 @@ The source code and accompanying technical documentation of our implementation w
 ## Acknowledgements
 
 We would like to thank the [Digital Life Initiative](https://dli.tech.cornell.edu/) at Cornell Tech for supporting this work through a doctoral fellowship. We would also like to thank Joey Castillo, Frank Bu and Stephen Hawes for taking part in preliminary discussions that helped motivate this work.
+
+This page was created using the open-source [Tufte Project Pages](https://github.com/tansh-kwa/tufte-project-template) template.
 
 ## Contact
 
