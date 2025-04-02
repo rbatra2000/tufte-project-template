@@ -55,6 +55,7 @@ To generate the title, author list, affiliations and links the markdown must beg
 ```md
 title: "FunkyName: Actual Title of Paper"
 venue: to appear at ACM Conf 2042
+award: Test of Time Award
 authors:
   - name: "Jay Doe"
     affiliation: "University University"
