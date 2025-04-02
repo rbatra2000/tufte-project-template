@@ -12,7 +12,7 @@
     font-family: monospace;
     /* font-style: italic; */
     font-size: 0.8rem;
-    margin-top: -1rem !important;
+    margin-top: -0.8rem !important;
     margin-bottom: 0.05rem !important;
 }
 .award_emph{
@@ -47,6 +47,7 @@
     font-family: monospace;
     font-size: 0.9rem;
     padding-left: 0.5rem !important;
+    line-height: 1.35rem;
     /* font-style: bold; */
 }
 
@@ -139,7 +140,6 @@
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-
 
 .superscript {
     font-family: et-book-roman-old-style;
@@ -269,7 +269,7 @@ body {
         font-family: monospace;
         /* font-style: italic; */
         font-size: 0.8rem;
-        margin-top: -1rem !important;
+        margin-top: -0.8rem !important;
         margin-bottom: 0.05rem !important;
     }
     .award_emph{
@@ -564,8 +564,6 @@ pre.fullwidth > code {
     max-width: 90%;
     clear:both;
 }
-
-
 
 span.newthought {
     font-variant: small-caps;
