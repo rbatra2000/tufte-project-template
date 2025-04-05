@@ -20,7 +20,7 @@ authors:
 preprint: https://arxiv.org/abs/2411.02332
 video: https://youtu.be/rdtaUo2Lo38
 publication: null
-code: null 
+code: null
 ---
 
 <figure>
@@ -71,14 +71,14 @@ The source code and accompanying technical documentation of our implementation w
 
 ```
 @misc{kwatra2024splatoverflowasynchronoushardwaretroubleshooting,
-    title={SplatOverflow: Asynchronous Hardware Troubleshooting}, 
-    author={Amritansh Kwatra and Tobias Wienberg and Ilan Mandel and Ritik Batra 
+    title={SplatOverflow: Asynchronous Hardware Troubleshooting},
+    author={Amritansh Kwatra and Tobias Wienberg and Ilan Mandel and Ritik Batra
             and Peter He and Francois Guimbretiere and Thijs Roumen},
     year={2024},
     eprint={2411.02332},
     archivePrefix={arXiv},
     primaryClass={cs.HC},
-    url={https://arxiv.org/abs/2411.02332}, 
+    url={https://arxiv.org/abs/2411.02332},
 }
 ```
 
@@ -91,8 +91,3 @@ This page was created using the open-source [Tufte Project Pages](https://github
 ## Contact
 
 If you have questions about this work, contact Amrit Kwatra: `ak2244 at cornell dot edu`.
-
-
-
-
-
