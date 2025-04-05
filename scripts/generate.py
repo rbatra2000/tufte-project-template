@@ -40,15 +40,15 @@ def parse_frontmatter(file_path):
         content = f.read()
 
     fm = frontmatter.loads(content)
-    title = Title(fm['title'])
-    authors = Authors([Author(author['name'], author['affiliation']) for author in fm['authors']])
-    venue = Venue(fm['venue'])
-    award = Award(fm['award'])
+    title = Title(fm.get("title", None))
+    authors = Authors([Author(author['name'], author['affiliation']) for author in fm.get("authors", [])])
+    venue = Venue(fm.get("venue", None))
+    award = Award(fm.get("award", None))
     preprint__link = Link("preprint", fm['preprint'])
-    video__link = Link("video", fm['video'])
-    publication__link = Link("publication", fm['publication'])
-    code__link = Link("code", fm['code'])
-    
+    video__link = Link("video", fm.get("video", None))
+    publication__link = Link("publication", fm.get("publication", None))
+    code__link = Link("code", fm.get("code", None))
+
     metadata = Metadata(title, authors, venue, award, preprint__link, video__link, publication__link, code__link)
     return metadata
 
@@ -64,7 +64,7 @@ def sidenote_replacement(match):
     note = match.group(2)
     # Generate a unique ID for each margin note
     note_id = f"mn-{hash(text + note) & 0xFFFFFF:06x}"
-    
+
     return f"""<span class="highlight">{text}</span>
             <label for="{note_id}" class="margin-toggle sidenote-number"></label>
             <input type="checkbox" id="{note_id}" class="margin-toggle"/>
@@ -75,7 +75,7 @@ def sidenote_replacement(match):
 def create_sidenotes(content):
     # Find all marginnote tags and replace them with the appropriate HTML
     pattern = r'<sidenote>[\s\S]*?<text>(.*?)</text>[\s\S]*?<note>(.*?)</note>[\s\S]*?</sidenote>'
-    
+
     return re.sub(pattern, sidenote_replacement, content)
 
 def get_inner_markdown(text):
@@ -87,7 +87,7 @@ def figure_replacement(match):
     caption = get_inner_markdown(match.group(3))
 
     figure_id = f"mn-figure-{hash(src + alt) & 0xFFFFFF:06x}"
-    
+
     if src.endswith('.mov') or src.endswith('.mp4'):
         return f"""<figure>
                     <video width="100%" controls autoplay loop muted playsinline>
@@ -127,17 +127,17 @@ def parse_markdown(file_path):
 
     content_sans_frontmatter = create_figures(content_sans_frontmatter)
     content_sans_frontmatter = create_sidenotes(content_sans_frontmatter)
-    
+
     return f"<section>{content_sans_frontmatter}</section>"
 
 def main():
     """
     Main function to parse command line arguments and process markdown files.
-    """ 
+    """
     parser = argparse.ArgumentParser(description='Process markdown files for website generation.')
     parser.add_argument('markdown_file', type=str, help='Path to the markdown file to process')
     parser.add_argument('--name', '-n', type=str, help='Name of the output file', default=None)
-    
+
     args = parser.parse_args()
 
     metadata = parse_frontmatter(args.markdown_file)
@@ -145,7 +145,7 @@ def main():
 
     _html = generate_premble(metadata.title) + metadata.__html__() + content + SUFFIX
     fmt_html = format_html(_html)
-    
+
     if args.name is None:
         args.name = args.markdown_file.split('/')[-1].split('.')[0]
 
