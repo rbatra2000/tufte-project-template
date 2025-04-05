@@ -16,7 +16,7 @@ Included is a file `sample.md` that is used to generate the [example project pag
 ![Dark Mode Example](assets/dark-mode.png)
 
 ### Writing
-Currently, this template supports a few elements: sections, image figures, video figures, text, code snippets, sidenotes.
+Currently, this template supports a few elements: sections, lists, image figures, video figures, text, code snippets, sidenotes.
 
 #### Sections & Text
 You can create a new section using the following:
@@ -36,7 +36,7 @@ To create a figure, insert the following html tag into the markdown file:
     <caption>image caption</caption>
 </figure>
 ```
-The image caption is rendered on the right-hand margin when the window is wide enough, and underneath the figure in narrow aspect ratios (e.g. mobile). 
+The image caption is rendered on the right-hand margin when the window is wide enough, and underneath the figure in narrow aspect ratios (e.g. mobile).
 
 Depending on the file type specified in src (based on extension) the figure will render an image or video using html `<img>` or `<video>` tags.
 
@@ -47,7 +47,7 @@ Some text that wants to make a <sidenote><text>reference<text><note>Text that ex
 ```
 This renders the inner contents in `<note>` to the sidenote. All numbering should be automatic.
 
-#### Code Snippets 
+#### Code Snippets
 Code snippets are automatically created from any text within \``` \``` tick marks.
 
 ### Frontmatter
@@ -76,7 +76,7 @@ The frontmatter generates the first elements on the page. This project uses [pyt
 
 First set up your python environment. I prefer using [uv](https://docs.astral.sh/uv/). Use `uv sync`, or use pip to install [marko](https://marko-py.readthedocs.io/en/latest/index.html) & [python-frontmatter](https://github.com/eyeseast/python-frontmatter).
 
-To generate run `uv run scripts/generate.py <path-to-markdown>` this will generate an html file with the same name as the markdown file. To override, pass the filename using `--name`, i.e. `uv run scripts/generate.py <path-to-markdown> --name output` 
+To generate run `uv run scripts/generate.py <path-to-markdown>` this will generate an html file with the same name as the markdown file. To override, pass the filename using `--name`, i.e. `uv run scripts/generate.py <path-to-markdown> --name output`
 
 ### CSS
 
