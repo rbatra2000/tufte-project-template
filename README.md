@@ -8,14 +8,10 @@ Generate an elegant research project webpage from a markdown file. This project 
 ### Examples
 Included is a file `examples/sample.md` that is used to generate the [example project page](https://amritkwatra.com/research/splatoverflow) linked above. Assets to generate this webpage are included in the `assets` folder. Examining the structure of this sample could be a useful starting point for making your own website.
 
-`examples/blog.md` shows how the same template could be used to generate a blog page. This mostly has to do with how frontmatter is structured and handled. Take a look at the example if you want to see how it works. The steps for generating the html are the same as other examples. I do not blog, so the text is just lorem ipsum.
+`examples/blog.md` shows how the same template could be used to generate a blog page. This mostly has to do with how frontmatter is structured and handled. Take a look at the example if you want to see how it works. The steps for generating the html are the same as other examples.
 
-#### Screenshots
-**Light Mode Project Page:**
-![Light Mode Example](assets/light-mode.png)
-
-**Dark Mode Project Page:**
-![Dark Mode Example](assets/dark-mode.png)
+### Screenshots
+I've broken out the screenshots into a [separate file](examples/screenshots.md) in the examples directory.
 
 ### Writing
 Currently, this template supports a few elements: sections, lists, image figures, video figures, text, code snippets, sidenotes.
