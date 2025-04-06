@@ -11,11 +11,17 @@ Included is a file `examples/sample.md` that is used to generate the [example pr
 `examples/blog.md` shows how the same template could be used to generate a blog page. This mostly has to do with how frontmatter is structured and handled. Take a look at the example if you want to see how it works. The steps for generating the html are the same as other examples. I do not blog, so the text is just lorem ipsum.
 
 #### Screenshots
-**Light Mode:**
+**Light Mode Project Page:**
 ![Light Mode Example](assets/light-mode.png)
 
-**Dark Mode:**
+**Dark Mode Project Page:**
 ![Dark Mode Example](assets/dark-mode.png)
+
+**Light Mode Blog:**
+![Light Mode Blog Example](assets/light-mode-blog.png)
+
+**Dark Mode Blog:**
+![Dark Mode Blog Example](assets/dark-mode-blog.png)
 
 ### Writing
 Currently, this template supports a few elements: sections, lists, image figures, video figures, text, code snippets, sidenotes.
