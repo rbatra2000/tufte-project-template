@@ -5,7 +5,6 @@ package-lock.json
 */__pycache__/*
 */__pycache__
 */__pycache__/
-*/__pycache__/
-*/__pycache__/
-*/__pycache__/
-*/__pycache__/
+uv.lock
+vite.config.js
+package.json
