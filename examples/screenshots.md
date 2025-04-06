@@ -10,12 +10,8 @@
 
 ### Mobile
 
-**Light Mode Project Page:**
-![Light Mode Example](../assets/light-mode-mobile.png)
-
-**Dark Mode Project Page:**
-![Dark Mode Example](../assets/dark-mode-mobile.png)
-
+**Mobile Project Page (Light | Dark)**
+<img src="../assets/light-mode-mobile.png" width=50%><img src="../assets/dark-mode-mobile.png" width=50%>
 
 ## Blog Screenshots
 
@@ -29,8 +25,5 @@
 
 ### Mobile
 
-**Light Mode Blog Page:**
-![Light Mode Example](../assets/light-mode-blog-mobile.png)
-
-**Dark Mode Blog Page:**
-![Dark Mode Example](../assets/dark-mode-blog-mobile.png)
+**Mobile Blog Page (Light | Dark)**
+<img src="../assets/light-mode-blog-mobile.png" width=50%><img src="../assets/dark-mode-blog-mobile.png" width=50%>
