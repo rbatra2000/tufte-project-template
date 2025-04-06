@@ -11,7 +11,8 @@
 ### Mobile
 
 **Mobile Project Page (Light | Dark)**
-<img src="../assets/light-mode-mobile.png" width=50%><img src="../assets/dark-mode-mobile.png" width=50%>
+
+<img src="../assets/light-mode-mobile.png" width=49%><img src="../assets/dark-mode-mobile.png" width=49%>
 
 ## Blog Screenshots
 
@@ -26,4 +27,5 @@
 ### Mobile
 
 **Mobile Blog Page (Light | Dark)**
-<img src="../assets/light-mode-blog-mobile.png" width=50%><img src="../assets/dark-mode-blog-mobile.png" width=50%>
+
+<img src="../assets/light-mode-blog-mobile.png" width=49%><img src="../assets/dark-mode-blog-mobile.png" width=49%>
