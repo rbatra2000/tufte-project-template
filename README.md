@@ -17,12 +17,6 @@ Included is a file `examples/sample.md` that is used to generate the [example pr
 **Dark Mode Project Page:**
 ![Dark Mode Example](assets/dark-mode.png)
 
-**Light Mode Blog:**
-![Light Mode Blog Example](assets/light-mode-blog.png)
-
-**Dark Mode Blog:**
-![Dark Mode Blog Example](assets/dark-mode-blog.png)
-
 ### Writing
 Currently, this template supports a few elements: sections, lists, image figures, video figures, text, code snippets, sidenotes.
 
