@@ -26,6 +26,16 @@ class Title:
             html = f"<h1 class='title'><span class='main-title'>{self.title}</span></h1>"
         return html
 
+class Date:
+    def __init__(self, date):
+        self.date = date
+
+    def __str__(self):
+        return self.date
+
+    def __html__(self):
+        return f"<p class='date'>{self.date}</p>"
+
 class Authors:
     def __init__(self, authors):
         self.authors = authors
@@ -42,7 +52,9 @@ class Authors:
         for author in self.authors:
             if author is None:
                 continue
-            if author.affiliation not in affiliations_added:
+            elif author is not None and author.affiliation is None:
+                segment = f"<span class='individual-author'>{author.name}</span>"
+            elif author.affiliation not in affiliations_added:
                 affiliation_num = len(affiliations_added) + 1
 
                 segment = f"<span class='individual-author'>{author.name}<label for='author-affiliation-{affiliation_num}' class='margin-toggle sidenote-number'></label><input type='checkbox' id='author-affiliation-{affiliation_num}' class='margin-toggle'/></span>, <span class='sidenote'>{author.affiliation}</span>"
@@ -78,6 +90,8 @@ class Link:
         return f"{self.text}: {self.link}"
 
     def __html__(self):
+        if self.link == -1:
+            return ""
         if self.link:
             return f"<span class='newthought'><a class='pop' href='{self.link}' target='_blank' rel='noopener noreferrer'>{self.text}</a></span>"
         else:
@@ -108,9 +122,10 @@ class Award:
         return f"<p class='highlight_award'>{self.award}</p>"
 
 class Metadata:
-    def __init__(self, title, authors, venue, award, preprint, video, publication, code):
+    def __init__(self, title, authors, date, venue, award, preprint, video, publication, code):
         self.title = title
         self.authors = authors
+        self.date = date
         self.venue = venue
         self.award = award
         self.preprint = preprint
@@ -126,7 +141,7 @@ class Metadata:
         return f"<p class='links'>{inner_html}</p>"
 
     def __html__(self):
-        inner_html = self.title.__html__() + self.authors.__html__() + self.venue.__html__() + self.award.__html__() + self.format_links()
+        inner_html = self.title.__html__() + self.authors.__html__() + self.date.__html__() + self.venue.__html__() + self.award.__html__() + self.format_links()
         return f"<section id = 'title-main'>{inner_html}</section>"
 
 

@@ -1,7 +1,7 @@
 import argparse
 import marko
 import frontmatter
-from _types import Title, Authors, Author, Link, Metadata, Venue, Award
+from _types import Title, Authors, Author, Link, Metadata, Venue, Award, Date
 from _utils import format_html
 
 import re
@@ -41,15 +41,16 @@ def parse_frontmatter(file_path):
 
     fm = frontmatter.loads(content)
     title = Title(fm.get("title", None))
-    authors = Authors([Author(author['name'], author['affiliation']) for author in fm.get("authors", [])])
+    date = Date(fm.get("date", None))
+    authors = Authors([Author(author.get("name", None), author.get("affiliation", None)) for author in fm.get("authors", [])])
     venue = Venue(fm.get("venue", None))
     award = Award(fm.get("award", None))
-    preprint__link = Link("preprint", fm['preprint'])
-    video__link = Link("video", fm.get("video", None))
-    publication__link = Link("publication", fm.get("publication", None))
-    code__link = Link("code", fm.get("code", None))
+    preprint__link = Link("preprint", fm.get('preprint', -1))
+    video__link = Link("video", fm.get("video", -1))
+    publication__link = Link("publication", fm.get("publication", -1))
+    code__link = Link("code", fm.get("code", -1))
 
-    metadata = Metadata(title, authors, venue, award, preprint__link, video__link, publication__link, code__link)
+    metadata = Metadata(title, authors, date, venue, award, preprint__link, video__link, publication__link, code__link)
     return metadata
 
 def strip_frontmatter(content):
@@ -68,9 +69,7 @@ def sidenote_replacement(match):
     return f"""<span class="highlight">{text}</span>
             <label for="{note_id}" class="margin-toggle sidenote-number"></label>
             <input type="checkbox" id="{note_id}" class="margin-toggle"/>
-            <span class="sidenote">
-                {note}
-            </span>"""
+            <span class="sidenote">{note}</span>"""
 
 def create_sidenotes(content):
     # Find all marginnote tags and replace them with the appropriate HTML
