@@ -34,6 +34,8 @@ class Date:
         return self.date
 
     def __html__(self):
+        if self.date is None:
+            return ""
         return f"<p class='date'>{self.date}</p>"
 
 class Authors:
