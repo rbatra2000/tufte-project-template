@@ -7,6 +7,17 @@
     font-weight: bold;
 }
 
+.stanza-line {
+    margin-top: -0.25rem !important;
+    margin-bottom: -0.25rem !important;
+    font-size: 1.1rem;
+    /* line-height: 1.7rem; */
+}
+.stanza {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
 .highlight_award {
     color: #aa00ff;
     font-family: monospace;
@@ -157,7 +168,7 @@
 .links {
     margin-top: 0.2rem !important;
     margin-bottom: 0.2rem !important;
-    font-size: 1.2rem;
+    font-size: 1rem;
     justify-content: space-between;
     display: flex;
     align-items: start;
@@ -366,12 +377,6 @@ p.subtitle {
 
 .danger {
     color: red;
-}
-
-.date {
-    font-size: 1rem;
-    font-style: italic;
-    margin-top: -1rem;
 }
 
 article {
