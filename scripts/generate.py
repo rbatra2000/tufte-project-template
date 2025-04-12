@@ -80,7 +80,17 @@ def create_sidenotes(content):
 def get_inner_markdown(text):
     return marko.convert(text.strip()).replace('<p>', '').replace('</p>', '')
 
-def figure_replacement(match):
+def fullwidth_figure_replacement(match):
+    src = match.group(1)
+    alt = match.group(2)
+    caption = get_inner_markdown(match.group(3))
+
+    return f"""<figure class="fullwidth">
+                <img src="{src}" alt="{alt}"/>
+                <figcaption>{caption}</figcaption>
+            </figure>"""
+
+def regular_figure_replacement(match):
     src = match.group(1)
     alt = match.group(2)
     caption = get_inner_markdown(match.group(3))
@@ -111,8 +121,14 @@ def figure_replacement(match):
 
 def create_figures(content):
     # Remove debug print statement
-    pattern = r'<figure>[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?<alt>([\s\S]*?)</alt>[\s\S]*?<caption>([\s\S]*?)</caption>[\s\S]*?</figure>'
-    return re.sub(pattern, figure_replacement, content)
+    regular_figure_pattern = r'<figure>[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?<alt>([\s\S]*?)</alt>[\s\S]*?<caption>([\s\S]*?)</caption>[\s\S]*?</figure>'
+
+    fullwidth_figure_pattern = r'<figure class="fullwidth">[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?<alt>([\s\S]*?)</alt>[\s\S]*?<caption>([\s\S]*?)</caption>[\s\S]*?</figure>'
+
+    regular_figures_added = re.sub(regular_figure_pattern, regular_figure_replacement, content)
+    fullwidth_figures_added = re.sub(fullwidth_figure_pattern, fullwidth_figure_replacement, regular_figures_added)
+
+    return fullwidth_figures_added
 
 def parse_markdown(file_path):
     with open(file_path, 'r') as f:
