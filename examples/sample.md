@@ -17,10 +17,11 @@ authors:
     affiliation: "Cornell University"
   - name: "Thijs Roumen"
     affiliation: "Cornell Tech"
-preprint: https://arxiv.org/abs/2411.02332
-video: https://youtu.be/rdtaUo2Lo38
-publication: null
-code: null
+links:
+  preprint: https://arxiv.org/abs/2411.02332
+  video: https://youtu.be/rdtaUo2Lo38
+  publication: null
+  code: null
 ---
 
 <figure>

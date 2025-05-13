@@ -63,12 +63,13 @@ authors:
     affiliation: "Industry Industry"
   - name: "Jamie Doe"
     affiliation: "University University"
-preprint: https://link-to-arXiv
-video: https://link-to-video
-publication: null # note null values will appear greyed out
-code: null  # note null values will appear greyed out
+links:
+  preprint: https://link-to-arXiv
+  video: https://link-to-video
+  publication: null # note null values will appear greyed out
+  code: null  # note null values will appear greyed out
 ```
-The frontmatter generates the first elements on the page. This project uses [python-frontmatter](https://github.com/eyeseast/python-frontmatter) to do this.
+The frontmatter generates the first elements on the page. This project uses [python-frontmatter](https://github.com/eyeseast/python-frontmatter) to do this. All links listed under the `links` key will be rendered as hyperlinks following with the rendered text being the key in the yaml and the link being the value. 
 
 ### Generating HTML
 
