@@ -69,7 +69,9 @@ links:
   publication: null # note null values will appear greyed out
   code: null  # note null values will appear greyed out
 ```
-The frontmatter generates the first elements on the page. This project uses [python-frontmatter](https://github.com/eyeseast/python-frontmatter) to do this. All links listed under the `links` key will be rendered as hyperlinks following with the rendered text being the key in the yaml and the link being the value. 
+`links` can contain any key/value pairs. The key in the yaml will be the text that is rendered on screen, and the value is what the text will link to. If an entry has a `null` value, it will be rendered in grey, linking to nothing.
+
+This project uses [python-frontmatter](https://github.com/eyeseast/python-frontmatter) to do this.
 
 ### Generating HTML
 
