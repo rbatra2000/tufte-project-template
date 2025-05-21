@@ -69,7 +69,7 @@ links:
   publication: null # note null values will appear greyed out
   code: null  # note null values will appear greyed out
 ```
-`links` can contain any key/value pairs. The key will be the text that is rendered on screen, and the value is what the text will link to. If an entry has a `null` value, it will be rendered in grey, linking to nothing.
+`links` can contain any key/value pairs. The key in the yaml will be the text that is rendered on screen, and the value is what the text will link to. If an entry has a `null` value, it will be rendered in grey, linking to nothing.
 
 This project uses [python-frontmatter](https://github.com/eyeseast/python-frontmatter) to do extract data from the frontmatter portion of the markdown.
 
