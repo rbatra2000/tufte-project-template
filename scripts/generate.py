@@ -45,7 +45,7 @@ def parse_frontmatter(file_path):
     authors = Authors([Author(author.get("name", None), author.get("affiliation", None)) for author in fm.get("authors", [])])
     venue = Venue(fm.get("venue", None))
     award = Award(fm.get("award", None))
-    links_dict = fm.get("links", None)
+    links_dict = fm.get("links", {})
     links = []
     for k, v in links_dict.items():
         links.append(Link(k, v))
