@@ -18,15 +18,12 @@
     margin-bottom: 1rem !important;
 }
 
-<<<<<<< HEAD
 .date {
     font-size: 1rem;
     font-style: italic;
     margin-top: -1rem;
 }
 
-=======
->>>>>>> main
 .highlight_award {
     color: #aa00ff;
     font-family: monospace;
@@ -691,7 +688,6 @@ label.margin-toggle:not(.sidenote-number) {
         padding-right: 8%;
     }
 
-<<<<<<< HEAD
     .iframe-wrapper {
         position: relative;
         padding-bottom: 150%;
@@ -704,12 +700,6 @@ label.margin-toggle:not(.sidenote-number) {
         margin-top: 0.2rem !important;
         margin-bottom: 0.2rem !important;
         font-size: 0.9rem;
-=======
-    .links {
-        margin-top: 0.2rem !important;
-        margin-bottom: 0.2rem !important;
-        font-size: 1rem;
->>>>>>> main
         justify-content: space-between;
         display: flex;
         align-items: start;
