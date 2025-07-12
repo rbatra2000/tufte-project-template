@@ -45,12 +45,12 @@ def parse_frontmatter(file_path):
     authors = Authors([Author(author.get("name", None), author.get("affiliation", None)) for author in fm.get("authors", [])])
     venue = Venue(fm.get("venue", None))
     award = Award(fm.get("award", None))
-    preprint__link = Link("preprint", fm.get('preprint', -1))
-    video__link = Link("video", fm.get("video", -1))
-    publication__link = Link("publication", fm.get("publication", -1))
-    code__link = Link("code", fm.get("code", -1))
+    links_dict = fm.get("links", {})
+    links = []
+    for k, v in links_dict.items():
+        links.append(Link(k, v))
 
-    metadata = Metadata(title, authors, date, venue, award, preprint__link, video__link, publication__link, code__link)
+    metadata = Metadata(title, authors, date, venue, award, links)
     return metadata
 
 def strip_frontmatter(content):

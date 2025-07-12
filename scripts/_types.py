@@ -124,22 +124,24 @@ class Award:
         return f"<p class='highlight_award'>{self.award}</p>"
 
 class Metadata:
-    def __init__(self, title, authors, date, venue, award, preprint, video, publication, code):
+    def __init__(self, title, authors, date, venue, award, links):
         self.title = title
         self.authors = authors
         self.date = date
         self.venue = venue
         self.award = award
-        self.preprint = preprint
-        self.video = video
-        self.publication = publication
-        self.code = code
+        self.links = links
 
     def __str__(self):
-        return f"Title: {self.title}\nAuthors: {str(self.authors)}\nVenue: {str(self.venue)}\nPreprint: {str(self.preprint)}\nVideo: {str(self.video)}\nPublication: {str(self.publication)}\nCode: {str(self.code)}"
+        s = f"Title: {self.title}\nAuthors: {str(self.authors)}\nVenue: {str(self.venue)}\n"
+        for link in self.links:
+            s += f"{link.text}: {link.link}\n"
+        return s
 
     def format_links(self):
-        inner_html = self.preprint.__html__() + self.video.__html__() + self.publication.__html__() + self.code.__html__()
+        inner_html = ""
+        for link in self.links:
+            inner_html += link.__html__()
         return f"<p class='links'>{inner_html}</p>"
 
     def __html__(self):
