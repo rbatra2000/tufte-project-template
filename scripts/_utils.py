@@ -11,7 +11,7 @@ def format_html(html):
         str: Formatted HTML with proper indentation.
     """
     # Define patterns for elements that should be on their own line
-    block_elements = r'<\/?(?:html|head|body|div|section|article|header|footer|nav|main|aside|p|h[1-6]|ul|ol|li|table|tr|td|th|thead|tbody|tfoot|form|fieldset|figure|figcaption|video|source|pre|code|blockquote|iframe)(?:\s[^>]*)?>'
+    block_elements = r'<\/?(?:html|head|body|div|section|article|header|footer|nav|main|aside|p|h[1-6]|ul|ol|li|form|fieldset|figure|figcaption|video|source|pre|code|blockquote|iframe)(?:\s[^>]*)?>'
     
     # Add line breaks before and after block elements
     html = re.sub(f'({block_elements})', r'\n\1\n', html)

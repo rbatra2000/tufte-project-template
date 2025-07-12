@@ -1,5 +1,6 @@
 import argparse
 import marko
+from marko.ext.gfm import gfm
 import frontmatter
 from _types import Title, Authors, Author, Link, Metadata, Venue, Award, Date
 from _utils import format_html
@@ -45,7 +46,8 @@ def parse_frontmatter(file_path):
     authors = Authors([Author(author.get("name", None), author.get("affiliation", None)) for author in fm.get("authors", [])])
     venue = Venue(fm.get("venue", None))
     award = Award(fm.get("award", None))
-    links_dict = fm.get("links", None)
+    links_dict = fm.get("links", {})
+    
     links = []
     for k, v in links_dict.items():
         links.append(Link(k, v))
@@ -71,6 +73,15 @@ def sidenote_replacement(match):
             <input type="checkbox" id="{note_id}" class="margin-toggle"/>
             <span class="sidenote">{note}</span>"""
 
+def table_replacement(match):
+    doc = gfm.parse(match.group(0).replace('<table>', '').replace('</table>', ''))
+    return f"""{gfm.render(doc)}"""
+
+def create_tables(content):
+    # Find all table tags and replace them with the appropriate HTML
+    pattern = r'<table>[\s\S]*?</table>'
+    return re.sub(pattern, table_replacement, content)
+
 def create_sidenotes(content):
     # Find all marginnote tags and replace them with the appropriate HTML
     pattern = r'<sidenote>[\s\S]*?<text>(.*?)</text>[\s\S]*?<note>(.*?)</note>[\s\S]*?</sidenote>'
@@ -89,6 +100,34 @@ def fullwidth_figure_replacement(match):
                 <img src="{src}" alt="{alt}"/>
                 <figcaption>{caption}</figcaption>
             </figure>"""
+
+def iframe_replacement(match):
+    src = match.group(1)
+    alt = match.group(2)
+    caption = get_inner_markdown(match.group(3))
+
+    figure_id = f"mn-figure-{hash(src + alt) & 0xFFFFFF:06x}"
+
+    if caption == "":
+        return f"""<figure class="iframe-wrapper">
+                    <iframe src="{src}" frameborder="0" allowfullscreen></iframe>
+                </figure>"""
+    else:
+        return f"""<figure class="iframe-wrapper">
+                <iframe src="{src}" frameborder="0" allowfullscreen></iframe>
+                <label for="{figure_id}" class="margin-toggle">&#8853;</label>
+                <input type="checkbox" id="{figure_id}" class="margin-toggle"/>
+                <span class="marginnote">
+                    {caption}
+                </span>
+            </figure>"""
+
+def iframe_fullwidth_replacement(match):
+    src = match.group(1)
+    return f"""<figure class="iframe-wrapper fullwidth">
+                    <iframe src="{src}" frameborder="0" allowfullscreen></iframe>
+                </figure>"""
+
 
 def regular_figure_replacement(match):
     src = match.group(1)
@@ -125,10 +164,16 @@ def create_figures(content):
 
     fullwidth_figure_pattern = r'<figure class="fullwidth">[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?<alt>([\s\S]*?)</alt>[\s\S]*?<caption>([\s\S]*?)</caption>[\s\S]*?</figure>'
 
+    iframe_pattern = r'<figure iframe>[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?<alt>([\s\S]*?)</alt>[\s\S]*?<caption>([\s\S]*?)</caption>[\s\S]*?</figure>'
+
+    iframe_fullwidth_pattern = r'<figure iframe class="fullwidth">[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?<alt>([\s\S]*?)</alt>[\s\S]*?<caption>([\s\S]*?)</caption>[\s\S]*?</figure>'
+
     regular_figures_added = re.sub(regular_figure_pattern, regular_figure_replacement, content)
     fullwidth_figures_added = re.sub(fullwidth_figure_pattern, fullwidth_figure_replacement, regular_figures_added)
+    iframe_figures_added = re.sub(iframe_pattern, iframe_replacement, fullwidth_figures_added)
+    iframe_fullwidth_figures_added = re.sub(iframe_fullwidth_pattern, iframe_fullwidth_replacement, iframe_figures_added)
 
-    return fullwidth_figures_added
+    return iframe_fullwidth_figures_added
 
 def parse_markdown(file_path):
     with open(file_path, 'r') as f:
@@ -142,6 +187,7 @@ def parse_markdown(file_path):
 
     content_sans_frontmatter = create_figures(content_sans_frontmatter)
     content_sans_frontmatter = create_sidenotes(content_sans_frontmatter)
+    content_sans_frontmatter = create_tables(content_sans_frontmatter)
 
     return f"<section>{content_sans_frontmatter}</section>"
 
