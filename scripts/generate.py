@@ -75,7 +75,7 @@ def sidenote_replacement(match):
 
 def table_replacement(match):
     doc = gfm.parse(match.group(0).replace('<table>', '').replace('</table>', ''))
-    return f"""{gfm.render(doc)}"""
+    return f"""<div class="table-wrapper">{gfm.render(doc)}</div>"""
 
 def create_tables(content):
     # Find all table tags and replace them with the appropriate HTML
