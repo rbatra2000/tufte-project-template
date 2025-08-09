@@ -22,6 +22,9 @@ def generate_premble(x):
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <title>{x}</title>
                 <link rel="stylesheet" href="../style/tufte.css"/>
+                <link rel="icon" href="../icons/favicon.ico" sizes="32x32" />
+                <link rel="icon" href="../icons/icon.svg" type="image/svg+xml" />
+                <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png" />
             </head>
 
             <body>
@@ -43,7 +46,7 @@ def parse_frontmatter(file_path):
     fm = frontmatter.loads(content)
     title = Title(fm.get("title", None))
     date = Date(fm.get("date", None))
-    authors = Authors([Author(author.get("name", None), author.get("affiliation", None)) for author in fm.get("authors", [])])
+    authors = Authors([Author(author.get("name", None), author.get("affiliation", None), author.get("link", None)) for author in fm.get("authors", [])])
     venue = Venue(fm.get("venue", None))
     award = Award(fm.get("award", None))
     links_dict = fm.get("links", {})

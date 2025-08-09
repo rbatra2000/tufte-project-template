@@ -55,15 +55,25 @@ class Authors:
             if author is None:
                 continue
             elif author is not None and author.affiliation is None:
-                segment = f"<span class='individual-author'>{author.name}</span>"
+                if author.link is not None:
+                    segment = f"<span class='individual-author'><a class='pop' href='{author.link}' target='_blank' rel='noopener noreferrer'>{author.name}</a></span>"
+                else:
+                    segment = f"<span class='individual-author'>{author.name}</span>"
             elif author.affiliation not in affiliations_added:
                 affiliation_num = len(affiliations_added) + 1
 
-                segment = f"<span class='individual-author'>{author.name}<label for='author-affiliation-{affiliation_num}' class='margin-toggle sidenote-number'></label><input type='checkbox' id='author-affiliation-{affiliation_num}' class='margin-toggle'/></span>, <span class='sidenote'>{author.affiliation}</span>"
+                if author.link is not None:
+                    segment = f"<span class='individual-author'><a class='pop' href='{author.link}' target='_blank' rel='noopener noreferrer'>{author.name}</a><label for='author-affiliation-{affiliation_num}' class='margin-toggle sidenote-number'></label><input type='checkbox' id='author-affiliation-{affiliation_num}' class='margin-toggle'/></span>, <span class='sidenote'>{author.affiliation}</span>"
+                else:
+                    segment = f"<span class='individual-author'>{author.name}<label for='author-affiliation-{affiliation_num}' class='margin-toggle sidenote-number'></label><input type='checkbox' id='author-affiliation-{affiliation_num}' class='margin-toggle'/></span>, <span class='sidenote'>{author.affiliation}</span>"
 
                 affiliations_added[author.affiliation] = affiliation_num
             else:
-                segment = f"<span class='individual-author'>{author.name}<span class='superscript'>{affiliations_added[author.affiliation]}</span>, </span>"
+                if author.link is not None:
+                    segment = f"<span class='individual-author'><a class='pop' href='{author.link}' target='_blank' rel='noopener noreferrer'>{author.name}</a><span class='superscript'>{affiliations_added[author.affiliation]}</span>, </span>"
+                else:
+                    segment = f"<span class='individual-author'>{author.name}<span class='superscript'>{affiliations_added[author.affiliation]}</span>, </span>"
+
             inner_html += segment
         if inner_html.endswith(", </span>"):
             inner_html = inner_html[:-9] + "</span>" # adjust the trailing comma
@@ -76,9 +86,10 @@ class Authors:
         return html
 
 class Author:
-    def __init__(self, name, affiliation):
+    def __init__(self, name, affiliation, link):
         self.name = name
         self.affiliation = affiliation
+        self.link = link
 
     def __str__(self):
         return f"{self.name}, {self.affiliation}"
