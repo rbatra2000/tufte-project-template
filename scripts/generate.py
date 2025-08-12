@@ -8,8 +8,7 @@ from _utils import format_html
 import re
 
 remapper = {
-    r"<h2>(.*?)</h2>": r"<h2 class='section-header'>\1</h2>",
-    r"<a href=\"(.*?)\">(.*?)</a>": r"<a class='pop' href='\1' target='_blank' rel='noopener noreferrer'>\2</a>"
+    r"<a href=\"(.*?)\">(.*?)</a>": r"<a class='pop' href='\1' target='_blank' rel='noopener noreferrer'>\2</a>",
 }
 
 
@@ -161,6 +160,15 @@ def regular_figure_replacement(match):
                     <img src="{src}" alt="{alt}" />
                 </figure>"""
 
+def header_id_replacement(match):
+    header_text = match.group(2)
+    return f'<h{match.group(1)} id="{"-".join(header_text.lower().split())}">{header_text}</h{match.group(1)}>'
+
+def update_header_ids(content):
+    # Find all header tags and update the ids
+    pattern = r'<h([1-6])>(.*?)</h\1>'
+    return re.sub(pattern, header_id_replacement, content)
+
 def create_figures(content):
     # Remove debug print statement
     regular_figure_pattern = r'<figure>[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?<alt>([\s\S]*?)</alt>[\s\S]*?<caption>([\s\S]*?)</caption>[\s\S]*?</figure>'
@@ -184,6 +192,7 @@ def parse_markdown(file_path):
 
     content_sans_frontmatter = strip_frontmatter(content)
     content_sans_frontmatter = marko.convert(content_sans_frontmatter)
+    content_sans_frontmatter = update_header_ids(content_sans_frontmatter)
 
     for k, v in remapper.items():
         content_sans_frontmatter = re.sub(k, v, content_sans_frontmatter)
