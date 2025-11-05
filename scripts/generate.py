@@ -140,24 +140,24 @@ def regular_figure_replacement(match):
 
     if src.endswith('.mov') or src.endswith('.mp4'):
         return f"""<figure>
-                    <label for="{figure_id}" class="margin-toggle">&#8853;</label>
-                    <input type="checkbox" id="{figure_id}" class="margin-toggle"/>
-                    <span class="marginnote">
-                        {caption}
-                    </span>
                     <video width="100%" controls autoplay loop muted playsinline>
                         <source src="{src}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                </figure>"""
-    elif src.endswith('.png') or src.endswith('.jpg') or src.endswith('.jpeg'):
-        return f"""<figure>
                     <label for="{figure_id}" class="margin-toggle">&#8853;</label>
                     <input type="checkbox" id="{figure_id}" class="margin-toggle"/>
                     <span class="marginnote">
                         {caption}
                     </span>
+                </figure>"""
+    elif src.endswith('.png') or src.endswith('.jpg') or src.endswith('.jpeg'):
+        return f"""<figure>
                     <img src="{src}" alt="{alt}" />
+                    <label for="{figure_id}" class="margin-toggle">&#8853;</label>
+                    <input type="checkbox" id="{figure_id}" class="margin-toggle"/>
+                    <span class="marginnote">
+                        {caption}
+                    </span>
                 </figure>"""
 
 def header_id_replacement(match):
