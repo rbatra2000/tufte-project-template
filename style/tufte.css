@@ -219,15 +219,15 @@
 
 @font-face {
     font-family: "et-book";
-    src: url("../et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot");
+    src: url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot");
     src:
-        url("../et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot?#iefix")
+        url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot?#iefix")
             format("embedded-opentype"),
-        url("../et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff")
+        url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff")
             format("woff"),
-        url("../et-book/et-book-roman-line-figures/et-book-roman-line-figures.ttf")
+        url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.ttf")
             format("truetype"),
-        url("../et-book/et-book-roman-line-figures/et-book-roman-line-figures.svg#etbookromanosf")
+        url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.svg#etbookromanosf")
             format("svg");
     font-weight: normal;
     font-style: normal;
@@ -302,6 +302,77 @@ body {
     color: #111;
     max-width: 1400px;
     counter-reset: sidenote-counter;
+}
+
+/* Force light mode for generated pages */
+body {
+    background-color: #fffff8 !important;
+    color: #111 !important;
+}
+
+.pop:hover {
+    color: #274fff !important;
+}
+
+.highlight_award {
+    color: #aa00ff !important;
+}
+
+.award_emph {
+    color: #aa00ff !important;
+}
+
+/* BibTeX code block styling */
+.bibtex-container {
+    position: relative;
+    margin-top: 1rem;
+}
+
+#bibtex-content {
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1rem;
+    padding-top: 2.5rem;
+    overflow-x: auto;
+    margin: 0;
+    width: 55%;
+    position: relative;
+}
+
+#bibtex-content code {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.42;
+    color: #333;
+    display: block;
+    width: 100%;
+}
+
+#copy-bibtex-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.25rem;
+    padding: 0.35rem;
+    font-size: 0.85rem;
+    background-color: #3c9764;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease;
+}
+
+#copy-bibtex-btn:hover {
+    background-color: #2d7a4d;
 }
 
 /* Adds dark mode */

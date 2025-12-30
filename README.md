@@ -35,11 +35,14 @@ To create a figure, insert the following html tag into the markdown file:
 
 ```md
 <figure>
-    <src>path-to-image-or-video</src>
+    <src>assets/path-to-image-or-video</src>
     <alt>image alt text</alt>
     <caption>image caption</caption>
 </figure>
 ```
+
+The `src` should reference assets in the `assets/` folder. For example, if you have `assets/texteng/teaser.png`, use `assets/texteng/teaser.png` as the src.
+
 The image caption is rendered on the right-hand margin when the window is wide enough, and underneath the figure in narrow aspect ratios (e.g. mobile).
 
 Depending on the file type specified in src (based on extension) the figure will render an image or video using html `<img>` or `<video>` tags.
@@ -95,7 +98,46 @@ This project uses [python-frontmatter](https://github.com/eyeseast/python-frontm
 
 First set up your python environment. I prefer using [uv](https://docs.astral.sh/uv/). Use `uv sync`, or use pip to install [marko](https://marko-py.readthedocs.io/en/latest/index.html) & [python-frontmatter](https://github.com/eyeseast/python-frontmatter).
 
-To generate run `uv run scripts/generate.py <path-to-markdown>` this will generate an html file with the same name as the markdown file. To override, pass the filename using `--name`, i.e. `uv run scripts/generate.py <path-to-markdown> --name output`
+### Usage
+
+Place your markdown files in the `examples/` folder, then run:
+
+```bash
+uv run scripts/generate.py <name>
+```
+
+For example:
+```bash
+uv run scripts/generate.py texteng
+```
+
+This will:
+- Look for `texteng.md` in the `examples/` folder
+- Create a folder `public/texteng/` 
+- Generate `index.html` in that folder
+- Copy all referenced assets from `assets/texteng/` (or `assets/` as fallback) to the output folder
+- Copy the CSS file to the output folder
+
+The same name is used for both the markdown file and the output folder, so you only need to specify it once.
+
+### Assets
+
+All assets (images, videos, etc.) should be placed in the `assets/<name>/` folder of the tufte-project-template, where `<name>` matches the name you pass to the script. The script will first look in `assets/<name>/`, and if not found, will fall back to `assets/`.
+
+When you reference assets in your markdown using `<figure><src>assets/...</src></figure>`, the script will automatically:
+
+- Find the asset in `assets/<name>/` or `assets/`
+- Copy it to `public/<name>/assets/`
+- Update all HTML references to use the correct paths
+
+For example, if you run `uv run scripts/generate.py texteng`, the script will look for assets in `assets/texteng/`. If you have `assets/texteng/teaser.png`, reference it in your markdown as:
+```md
+<figure>
+  <src>assets/texteng/teaser.png</src>
+  <alt>Figure 1</alt>
+  <caption>Teaser image</caption>
+</figure>
+```
 
 ## CSS
 
