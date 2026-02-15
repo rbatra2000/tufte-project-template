@@ -24,18 +24,17 @@ links:
   # presentation: https://www.youtube.com/watch?v=BC2LhGT9Y3s
 ---
 
+## Abstract
+
+Computational tools for fabrication often treat materials as passive rather than active participants in design, abstracting away relationships between craftspeople and materials. For craft communities that value relational practices, abstractions limit the adoption and creative uptake of computational tools which might otherwise be beneficial. To understand how better tool design could support richer relations between individuals, tools, and materials, we interviewed expert woodworkers, fiber artists, and metalworkers. We identify three orders of convivial relations central to craft: immediate relations between individuals, tools, and materials; mid-range relations between communities, platforms, and shared materials; and extended relations between institutions, infrastructures, and ecologies. Our analysis shows how craftspeople engage and struggle with convivial relations across all three orders, creating workflows that learn from materials while supporting autonomy. We conclude with design principles for computational tools and infrastructures to better support material dialogue, collective knowledge, and accountability, along with richer and more convivial relations between craftspeople, tools, and the material worlds around them.
 
 <figure>
-  <src>assets/conviviality/convivial.png</src>
+  <src>assets/convivialfabrication/relations.png</src>
   <alt>Relations of Conviviality</alt>
   <caption>
     Our interviews reveal three interconnected orders of convivial relations in craft practices.
   </caption>
 </figure>
-
-## Abstract
-
-Computational tools for fabrication often treat materials as passive rather than active participants in design, abstracting away relationships between craftspeople and materials. For craft communities that value relational practices, abstractions limit the adoption and creative uptake of computational tools which might otherwise be beneficial. To understand how better tool design could support richer relations between individuals, tools, and materials, we interviewed expert woodworkers, fiber artists, and metalworkers. We identify three orders of convivial relations central to craft: immediate relations between individuals, tools, and materials; mid-range relations between communities, platforms, and shared materials; and extended relations between institutions, infrastructures, and ecologies. Our analysis shows how craftspeople engage and struggle with convivial relations across all three orders, creating workflows that learn from materials while supporting autonomy. We conclude with design principles for computational tools and infrastructures to better support material dialogue, collective knowledge, and accountability, along with richer and more convivial relations between craftspeople, tools, and the material worlds around them.
 
 ## BibTex
 
