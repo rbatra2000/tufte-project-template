@@ -15,13 +15,13 @@ authors:
     affiliation: "Cornell Tech"
   - name: "Steven J. Jackson"
     affiliation: "Cornell University"
-venue: Conditionally Accepted to Appear in Proceedings of the 2026 ACM Computer-Human Interaction Conference (CHI’26)
+venue: In Proceedings of the 2026 ACM Computer-Human Interaction Conference (CHI’26)
 # award:
 links:
-  preprint: https://arxiv.org/abs/2602.04393
-  publication: null
-  video: null
-  # presentation: https://www.youtube.com/watch?v=BC2LhGT9Y3s
+  # preprint: https://arxiv.org/abs/2602.04393
+  publication: https://doi.org/10.1145/3772318.3790395
+  video: https://youtu.be/ufHH9f9QcOA?si=6qkRVySBlI4hxEjw
+  presentation: https://youtu.be/KPX6OIuxtbU
 ---
 
 ## Abstract
@@ -37,13 +37,12 @@ Computational tools for fabrication often treat materials as passive rather than
 </figure>
 
 ## BibTex
-
 ```
-@article{batra2026convivial,
+@inproceedings{batra2026convivial,
   title={Convivial Fabrication: Towards Relational Computational Tools For and From Craft Practices},
   author={Batra, Ritik and Zunder, Roy and Cheatle, Amy and Kwatra, Amritansh and Mandel, Ilan and Roumen, Thijs and Jackson, Steven J},
-  journal={arXiv preprint arXiv:2602.04393},
-  year={2026}
+  booktitle={Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems},
+  year={2026},
 }
 ```
 

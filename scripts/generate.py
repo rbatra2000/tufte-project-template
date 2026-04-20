@@ -196,7 +196,9 @@ def add_bibtex_copy_button(content):
         header_close = match.group(3)
         pre_open = match.group(4)
         code_open = match.group(5)
-        bibtex_content = match.group(6)
+        bibtex_content = '\n'.join(
+            f'<span>{line}</span>' for line in match.group(6).strip('\n').split('\n')
+        )
         code_close = match.group(7)
         pre_close = match.group(8)
 
@@ -211,8 +213,7 @@ def add_bibtex_copy_button(content):
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
         </button>
-        {pre_with_id}{code_open}{bibtex_content}{code_close}
-        {pre_close}
+        {pre_with_id}{code_open}{bibtex_content}{code_close}{pre_close}
     </div>"""
     
     return re.sub(pattern, bibtex_replacement, content, flags=re.IGNORECASE)

@@ -27,28 +27,36 @@ def format_html(html):
     
     # Process each line
     for line in html.split('\n'):
-        line = line.strip()
-        if not line:
+        stripped = line.strip()
+        if not stripped:
             continue
-        
+
         # Check if we're entering or exiting a code block
-        if '<code>' in line:
+        if '<code>' in stripped:
             in_code_block = True
-        if '</code>' in line:
+        if '</code>' in stripped:
             in_code_block = False
-            
+
         # Check if line contains a closing tag
-        if re.match(r'<\/', line) and not in_code_block:
+        if re.match(r'<\/', stripped) and not in_code_block:
             indent_level = max(0, indent_level - 1)
-            
-        # Add indentation (skip indentation if in code block)
-        if in_code_block:
+
+        # Add indentation; preserve original indentation inside code blocks
+        if in_code_block and '<code>' not in stripped:
             formatted_lines.append(line)
         else:
-            formatted_lines.append(' ' * (indent_level * indent_size) + line)
-        
+            formatted_lines.append(' ' * (indent_level * indent_size) + stripped)
+
         # Check if line contains an opening tag (not self-closing)
-        if not in_code_block and re.search(r'<[^\/][^>]*[^\/]>$', line) and not re.search(r'<(?:img|br|hr|input|link|meta|code)[^>]*>$', line):
+        if not in_code_block and re.search(r'<[^\/][^>]*[^\/]>$', stripped) and not re.search(r'<(?:img|br|hr|input|link|meta|code)[^>]*>$', stripped):
             indent_level += 1
     
-    return '\n'.join(formatted_lines)
+    result = '\n'.join(formatted_lines)
+    # Collapse whitespace between <pre> and <code> so pre-wrap doesn't render blank lines
+    result = re.sub(r'(<pre[^>]*>)\s*(<code[^>]*>)', r'\1\2', result)
+    result = re.sub(r'(</code>)\s*(</pre>)', r'\1\2', result)
+    # Remove the newline immediately after <code> (when it's inside a <pre>)
+    result = re.sub(r'(<pre[^>]*><code[^>]*>)\n', r'\1', result)
+    # Remove whitespace immediately before </code></pre>
+    result = re.sub(r'\n\s*(</code></pre>)', r'\1', result)
+    return result
