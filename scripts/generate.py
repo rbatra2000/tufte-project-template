@@ -196,8 +196,14 @@ def add_bibtex_copy_button(content):
         header_close = match.group(3)
         pre_open = match.group(4)
         code_open = match.group(5)
-        bibtex_content = '\n'.join(
-            f'<span>{line}</span>' for line in match.group(6).strip('\n').split('\n')
+        def wrap_line(line):
+            indent = len(line) - len(line.lstrip(' '))
+            if indent:
+                return f'<span style="padding-left:{indent}ch;text-indent:-{indent}ch;">{line}</span>'
+            return f'<span>{line}</span>'
+
+        bibtex_content = ''.join(
+            wrap_line(line) for line in match.group(6).strip('\n').split('\n')
         )
         code_close = match.group(7)
         pre_close = match.group(8)
@@ -206,13 +212,13 @@ def add_bibtex_copy_button(content):
         pre_with_id = pre_open.replace('<pre>', '<pre id="bibtex-content">')
 
         return f"""<div class="bibtex-container">
-        {header_open}{header_text}{header_close}
+        {header_open}{header_text}
         <button id="copy-bibtex-btn" onclick="copyBibtex()" title="Copy BibTeX">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
-        </button>
+        </button>{header_close}
         {pre_with_id}{code_open}{bibtex_content}{code_close}{pre_close}
     </div>"""
     
@@ -351,6 +357,11 @@ def main():
 
     # Copy all assets and get path mapping (pass the name for asset lookup in assets/{name}/)
     path_mapping = copy_assets(asset_paths, output_dir, script_dir, name)
+
+    # Always sync the stylesheet so CSS changes are reflected in output
+    public_style_dir = workspace_root / "public" / "style"
+    public_style_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(template_base / "style" / "tufte.css", public_style_dir / "tufte.css")
 
     # Parse and generate HTML
     metadata = parse_frontmatter(str(markdown_file_path))

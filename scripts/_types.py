@@ -43,7 +43,13 @@ class Authors:
         self.authors = authors
         self.author_map = {author.name: author.affiliation for author in authors}
         self.names = [author.name for author in authors]
-        self.affiliations = list(set([author.affiliation for author in authors]))
+        all_affiliations = []
+        for author in authors:
+            if isinstance(author.affiliation, list):
+                all_affiliations.extend(author.affiliation)
+            elif author.affiliation is not None:
+                all_affiliations.append(author.affiliation)
+        self.affiliations = list(set(all_affiliations))
 
     def __str__(self):
         return "; ".join([str(author) for author in self.authors])
@@ -51,39 +57,47 @@ class Authors:
     def __html__(self):
         affiliations_added = {}
         inner_html = ""
-        for author in self.authors:
-            if author is None:
-                continue
-            elif author is not None and author.affiliation is None:
-                if author.link is not None:
-                    segment = f"<span class='individual-author'><a class='pop' href='{author.link}' target='_blank' rel='noopener noreferrer'>{author.name}</a></span>"
-                else:
-                    segment = f"<span class='individual-author'>{author.name}</span>"
-            elif author.affiliation not in affiliations_added:
-                affiliation_num = len(affiliations_added) + 1
+        authors = [a for a in self.authors if a is not None]
 
-                if author.link is not None:
-                    segment = f"<span class='individual-author'><a class='pop' href='{author.link}' target='_blank' rel='noopener noreferrer'>{author.name}</a><label for='author-affiliation-{affiliation_num}' class='margin-toggle sidenote-number'></label><input type='checkbox' id='author-affiliation-{affiliation_num}' class='margin-toggle'/></span>, <span class='sidenote'>{author.affiliation}</span>"
-                else:
-                    segment = f"<span class='individual-author'>{author.name}<label for='author-affiliation-{affiliation_num}' class='margin-toggle sidenote-number'></label><input type='checkbox' id='author-affiliation-{affiliation_num}' class='margin-toggle'/></span>, <span class='sidenote'>{author.affiliation}</span>"
+        for i, author in enumerate(authors):
+            is_last = (i == len(authors) - 1)
+            affs = author.affiliation if isinstance(author.affiliation, list) else ([author.affiliation] if author.affiliation else [])
 
-                affiliations_added[author.affiliation] = affiliation_num
-            else:
-                if author.link is not None:
-                    segment = f"<span class='individual-author'><a class='pop' href='{author.link}' target='_blank' rel='noopener noreferrer'>{author.name}</a><span class='superscript'>{affiliations_added[author.affiliation]}</span>, </span>"
+            name_html = (
+                f"<a class='pop' href='{author.link}' target='_blank' rel='noopener noreferrer'>{author.name}</a>"
+                if author.link else author.name
+            )
+
+            # Name in its own span; labels+sidenotes interleaved after so each
+            # sidenote immediately follows its label (keeps CSS counter correct).
+            segment = f"<span class='individual-author'>{name_html}</span>"
+
+            for j, affiliation in enumerate(affs):
+                is_last_aff = (j == len(affs) - 1)
+                label_class = "margin-toggle sidenote-number" if is_last_aff else "margin-toggle sidenote-number-comma-after"
+
+                if affiliation not in affiliations_added:
+                    affiliation_num = len(affiliations_added) + 1
+                    affiliations_added[affiliation] = affiliation_num
+                    note_id = f"author-affiliation-{affiliation_num}"
+                    segment += (
+                        f"<label for='{note_id}' class='{label_class}'></label>"
+                        f"<input type='checkbox' id='{note_id}' class='margin-toggle'/>"
+                        f"<span class='sidenote'>{affiliation}</span>"
+                    )
                 else:
-                    segment = f"<span class='individual-author'>{author.name}<span class='superscript'>{affiliations_added[author.affiliation]}</span>, </span>"
+                    affiliation_num = affiliations_added[affiliation]
+                    prefix = "," if j > 0 else ""
+                    segment += f"<span class='superscript'>{prefix}{affiliation_num}</span>"
+
+            if not is_last:
+                segment += ", "
 
             inner_html += segment
-        if inner_html.endswith(", </span>"):
-            inner_html = inner_html[:-9] + "</span>" # adjust the trailing comma
 
         if inner_html == "":
-            html = ""
-        else:
-            html = f"<p class='newthought' id='authors'>{inner_html}</p>"
-
-        return html
+            return ""
+        return f"<p class='newthought' id='authors'>{inner_html}</p>"
 
 class Author:
     def __init__(self, name, affiliation, link):

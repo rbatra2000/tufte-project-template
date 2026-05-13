@@ -323,20 +323,20 @@ body {
 
 /* BibTeX code block styling */
 .bibtex-container {
-    position: relative;
     margin-top: 1rem;
 }
 
+.bibtex-container h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 #bibtex-content {
-    background-color: #f5f5f5;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 1rem;
-    padding-top: 2.5rem;
-    overflow-x: auto;
     margin: 0;
     width: 55%;
-    position: relative;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 #bibtex-content code {
@@ -346,32 +346,31 @@ body {
     color: #333;
     display: block;
     width: 100%;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+#bibtex-content code span {
+    display: block;
 }
 
 #copy-bibtex-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.25rem;
-    padding: 0.35rem;
-    font-size: 0.85rem;
-    background-color: #3c9764;
-    color: white;
+    padding: 0.25rem;
+    background: none;
+    color: #555;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-family: inherit;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+    vertical-align: middle;
 }
 
 #copy-bibtex-btn:hover {
-    background-color: #2d7a4d;
+    color: #111;
 }
 
 /* Adds dark mode */
@@ -623,6 +622,10 @@ img {
     counter-increment: sidenote-counter;
 }
 
+.sidenote-number-comma-after {
+    counter-increment: sidenote-counter;
+}
+
 .sidenote-number:after,
 .sidenote-number-non-inc:after,
 .sidenote:before {
@@ -633,6 +636,16 @@ img {
 
 .sidenote-number:after {
     content: counter(sidenote-counter);
+    font-size: 0.9rem;
+    top: -0.5rem;
+    left: -0.1rem;
+}
+
+.sidenote-number-comma-after:after {
+    content: counter(sidenote-counter) ",";
+    font-family: et-book-roman-old-style;
+    position: relative;
+    vertical-align: baseline;
     font-size: 0.9rem;
     top: -0.5rem;
     left: -0.1rem;
@@ -730,8 +743,12 @@ label.sidenote-number-non-inc {
     display: inline-block;
     max-height: 2rem; /* should be less than or equal to paragraph line-height */
 }
+label.sidenote-number-comma-after {
+    display: inline-block;
+    max-height: 2rem;
+}
 
-label.margin-toggle:not(.sidenote-number) {
+label.margin-toggle:not(.sidenote-number):not(.sidenote-number-comma-after) {
     display: none;
 }
 
@@ -782,6 +799,10 @@ label.margin-toggle:not(.sidenote-number) {
         width: 100%;
     }
 
+    #bibtex-content {
+        width: 100%;
+    }
+
     pre > code {
         width: 97%;
     }
@@ -815,7 +836,7 @@ label.margin-toggle:not(.sidenote-number) {
         width: 100%;
     }
 
-    label.margin-toggle:not(.sidenote-number) {
+    label.margin-toggle:not(.sidenote-number):not(.sidenote-number-comma-after) {
         display: inline;
     }
 

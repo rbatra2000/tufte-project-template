@@ -15,7 +15,7 @@ authors:
     affiliation: "Cornell University"
   - name: "Thijs Roumen"
     affiliation: "Cornell Tech"
-venue: Conditionally Accepted to Appear in Proceedings of 2026 ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW'26)
+venue: To Appear in the Proceedings of ACM Human Computer Interaction Journal 2026 (CSCW Track)
 # award:
 links:
   preprint: https://arxiv.org/abs/2506.10891
