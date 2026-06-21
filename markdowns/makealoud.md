@@ -9,13 +9,13 @@ authors:
     affiliation: "Autodesk Research"
   - name: "Justin Matejka"
     affiliation: "Autodesk Research"
-venue: To Appear in Proceedings of Designing Interactive Systems Conference (DIS’26)
+venue: In Proceedings of Designing Interactive Systems Conference (DIS’26)
 award: Honorable Mention for Best Paper
 links:
   # preprint: https://arxiv.org/abs/2506.10891
-  publication: null
+  publication: https://doi.org/10.1145/3800645.3813028
   video: https://youtu.be/bSumxAIxTPw
-  # presentation: https://youtu.be/ufHH9f9QcOA?si=6qkRVySBlI4hxEjw
+  presentation: https://www.youtube.com/watch?v=33FhoC43mf8
 ---
 
 ## Abstract
