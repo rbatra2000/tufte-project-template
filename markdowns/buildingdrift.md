@@ -17,7 +17,7 @@ authors:
     affiliation: "Cornell Tech"
   - name: "Mette Ramsgaard Thomsen"
     affiliation: "CITA, Royal Danish Academy"
-venue: In Submission
+venue: Conditionally Accepted to acadia 2026
 # award: Honorable Mention for Best Paper
 links:
   preprint: https://arxiv.org/abs/2606.19609

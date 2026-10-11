@@ -10,17 +10,18 @@ authors:
   - name: "Amritansh Kwatra"
     affiliation: "Cornell Tech"
   - name: "Jane L. E"
-    affiliation: "Stanford University"
+    affiliation: "Stanford University & National University of Singapore"
   - name: "Steven J. Jackson"
     affiliation: "Cornell University"
   - name: "Thijs Roumen"
     affiliation: "Cornell Tech"
-venue: To Appear in the Proceedings of ACM Human Computer Interaction Journal 2026 (CSCW Track)
+venue: In the Proceedings of ACM Human Computer Interaction Journal 2026 (CSCW Track)
 # award:
 links:
-  preprint: https://arxiv.org/abs/2506.10891
-  publication: null
-  # video: null
+  paper: assets/decomposingcraft/paper.pdf
+  # preprint: https://arxiv.org/abs/2506.10891
+  publication: https://doi.org/10.1145/3816917
+  video: https://youtu.be/VaHOGPpAm0g
   # presentation: https://youtu.be/ufHH9f9QcOA?si=6qkRVySBlI4hxEjw
 ---
 

@@ -259,28 +259,38 @@ def parse_markdown(file_path):
 
     return f"<section>{content_sans_frontmatter}</section>"
 
+def resolve_asset_name(original_path, name):
+    """Map a raw asset path (as written in the markdown/frontmatter) to the
+    filename it should have under assets/{name}/."""
+    if 'assets/' in original_path:
+        path_after_assets = original_path.split('assets/', 1)[-1]
+        # If path starts with name/, remove that prefix since we'll look in assets/name/ first
+        if path_after_assets.startswith(f"{name}/"):
+            return path_after_assets[len(name) + 1:]  # Remove "name/" prefix
+        return path_after_assets
+    return Path(original_path).name
+
 def extract_asset_paths(markdown_content, name):
     """Extract all asset paths referenced in the markdown file."""
     asset_paths = {}
-    
+
     # Find all <src> tags in figure elements
     figure_pattern = r'<figure[^>]*>[\s\S]*?<src>([\s\S]*?)</src>[\s\S]*?</figure>'
     for match in re.finditer(figure_pattern, markdown_content):
         original_path = match.group(1).strip()
         if original_path and not original_path.startswith('http'):
-            # Extract the asset name/path (remove ../assets/ or assets/ prefix)
-            if 'assets/' in original_path:
-                path_after_assets = original_path.split('assets/', 1)[-1]
-                # If path starts with name/, remove that prefix since we'll look in assets/name/ first
-                if path_after_assets.startswith(f"{name}/"):
-                    asset_name = path_after_assets[len(name) + 1:]  # Remove "name/" prefix
-                else:
-                    asset_name = path_after_assets
-            else:
-                asset_name = Path(original_path).name
-            # Store mapping from original path to asset name
-            asset_paths[original_path] = asset_name
-    
+            asset_paths[original_path] = resolve_asset_name(original_path, name)
+
+    return asset_paths
+
+def extract_link_asset_paths(links, name):
+    """Extract local asset paths (e.g. a linked paper PDF) referenced in the
+    frontmatter links, so they get copied alongside the other assets."""
+    asset_paths = {}
+    for link in links:
+        original_path = link.link
+        if isinstance(original_path, str) and original_path and not original_path.startswith('http'):
+            asset_paths[original_path] = resolve_asset_name(original_path, name)
     return asset_paths
 
 def copy_assets(asset_paths, output_dir, script_dir, name):
@@ -320,7 +330,10 @@ def update_asset_paths_in_html(html_content, path_mapping):
         # Replace in source tags (for video)
         updated_content = updated_content.replace(f'<source src="{old_path}"', f'<source src="{new_path}"')
         updated_content = updated_content.replace(f"<source src='{old_path}'", f"<source src='{new_path}'")
-    
+        # Replace in href attributes (for linked assets like a paper PDF)
+        updated_content = updated_content.replace(f'href="{old_path}"', f'href="{new_path}"')
+        updated_content = updated_content.replace(f"href='{old_path}'", f"href='{new_path}'")
+
     return updated_content
 
 def main():
@@ -346,9 +359,14 @@ def main():
     # Read markdown content to extract asset paths
     with open(markdown_file_path, 'r') as f:
         markdown_content = f.read()
-    
+
+    # Parse frontmatter first so we can also pick up any local asset paths
+    # referenced there (e.g. a linked paper PDF)
+    metadata = parse_frontmatter(str(markdown_file_path))
+
     # Extract asset paths before processing
     asset_paths = extract_asset_paths(markdown_content, name)
+    asset_paths.update(extract_link_asset_paths(metadata.links, name))
 
     # Create output directory in public/ using the same name
     workspace_root = template_base.parent
@@ -364,7 +382,6 @@ def main():
     shutil.copy2(template_base / "style" / "tufte.css", public_style_dir / "tufte.css")
 
     # Parse and generate HTML
-    metadata = parse_frontmatter(str(markdown_file_path))
     content = parse_markdown(str(markdown_file_path))
 
     _html = generate_premble(metadata.title) + metadata.__html__() + content + SUFFIX
