@@ -40,17 +40,21 @@ Craft practices rely on evolving archives of skill and knowledge developed throu
 ## BibTex
 
 ```
-@article{batra2025composing,
+@article{batra2026decomposing,
   title={(De)composing Craft: An Elementary Grammar for Sharing Expertise in Craft Workflows},
-  author={Batra, Ritik and Kim, Lydia and Mandel, Ilan and Kwatra, Amritansh and Jackson, Steven J and Roumen, Thijs and others},
-  journal={arXiv preprint arXiv:2506.10891},
-  year={2025}
+  author={Batra, Ritik and Kim, Lydia and Mandel, Ilan and Kwatra, Amritansh and E, Jane L and Jackson, Steven J and Roumen, Thijs},
+  journal={Proceedings of the ACM on Human-Computer Interaction},
+  volume={10},
+  number={6},
+  pages={1--31},
+  year={2026},
+  publisher={ACM New York, NY}
 }
 ```
 
 ## Acknowledgements
 
-<!-- We would like to thank our 23 participants for sharing their expertise and wisdom with us: [Kathrin Achenbach](http://annekata.com/), Paul Anderson, [Gregory Beson](https://gregorybeson.com/), Trevor Cross, [Kathy Creutzburg](https://www.kathycreutzburg.com/), [Jody Culkin](https://www.jodyculkin.com/), John Fletcher, [Lori Gaon](https://thecraftylounge.com/), [Christophe Guberan](http://www.christopheguberan.ch), [Eric Hagan](https://eric-hagan.com/), [Patty Harris](https://pattyharris.cargo.site/), [Kolin James Schmidt](https://www.kolinjamesfurniture.com/), Sally Jenkyn Jones, Ann Kronenberg, [Fernando Laposse](https://www.fernandolaposse.com/), [Gabriele Meyer](https://people.math.wisc.edu/~gemeyer/airsculpt/hyperbolic2.html), [Rosie Reyes](https://www.instagram.com/magic_circle_bk/), [Jackie Riccio](https://www.jackiericcio.com/), [Charlie Ryland](https://www.instagram.com/charlie.ryland/), [Yukako Satone](https://loopoftheloom.com/), [Moeineddin Shashaei](https://moeinedin.com/), [Scott Van Campen](https://www.makerspace.nyc/), and [Che-Wei Wang](https://cwandt.com/). We also thank Niti Parikh, Sebastian Bidegain, and the Craft@Large community for the early conversations and introductions and our labmates in the Computing on Earth Lab and Matter of Tech Lab for their feedback on the paper. -->
+We would like to thank our interview and evaluation study participants: Armin Namavari, Ann-Kareen Gedeus, Beatriz Carmona, [Evan Yee](https://www.evanyee.com/), [Jackie Lincroft](https://www.instagram.com/jackieknitsthings), [Lucy Jiang](https://www.instagram.com/lucyajiang/), [Shawna Huang](https://www.linkedin.com/in/shawna-huang/), and [Shruti Satrawada](https://crochetwithashroot.myshopify.com/). We also thank [Niti Parikh and the Craft@Large community](https://www.nitiparikh.com/general-5) for the early conversations and introductions. Finally, we thank our labmates in the [Matter of Tech Lab](https://www.matteroftechlab.org/) and Computing on Earth Lab for their feedback on the paper.
 
 This page was created using the open-source [Tufte Project Template](https://github.com/tansh-kwa/tufte-project-template).
 

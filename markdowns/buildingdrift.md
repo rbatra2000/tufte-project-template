@@ -17,8 +17,8 @@ authors:
     affiliation: "Cornell Tech"
   - name: "Mette Ramsgaard Thomsen"
     affiliation: "CITA, Royal Danish Academy"
-venue: Conditionally Accepted to acadia 2026
-# award: Honorable Mention for Best Paper
+venue: In the Proceedings of the Annual Conference for the Association for Computer Aided Design in Architecture (ACADIA'26)
+award: Best Paper Award
 links:
   preprint: https://arxiv.org/abs/2606.19609
   # publication: https://doi.org/10.1145/3800645.3813028
@@ -33,8 +33,10 @@ In a circular economy for construction, reclaimed materials carry prior lives of
 To put our taxonomy for building drift into practice, we present Pentimento, a documentation tool that leverages video documentation and 3D Gaussian Splatting to spatially, temporally, and semantically represent on-site adaptations in relation to the designed model. Pentimento enables each stakeholder to navigate material histories in ways that reduce barriers to material reuse. Together, these contributions open pathways towards computational tools that support the on-site improvisation essential to construction with reclaimed materials, enabling more sustainable cycles of recovery, repair, and reuse.
 
 <figure>
-  <src>assets/buildingdrift/teaser.png</src>
-  <alt>This figure shows a gaussian splat of a Danish-style shelter that we assembled in the forest with on-site adjustments marked as little dots.</alt>
+  <video controls="false">
+    <src>assets/buildingdrift/pentimento.mov</src>
+  </video>
+  <alt>This video shows our Pentimento system aligning the as-built structure as Gaussian Splats with the as-designed CAD model.</alt>
   <caption>
     Pentimento aligns the as-built structure as Gaussian splats with the as-designed model using overlaid on-site adaptations and comments.
   </caption>
@@ -45,7 +47,7 @@ To put our taxonomy for building drift into practice, we present Pentimento, a d
 ```
 @article{batra2026building,
   title={Building Drift: Documenting On-Site Construction Adaptations Across Material Lifecycles},
-  author={Batra, Ritik and Tamke, Martin and Svilans, Tom and H{\"u}ls, Jan and Kwatra, Amritansh and Jackson, Steven J and Roumen, Thijs and Thomsen, Mette Ramsgaard},
+  author={Batra, Ritik and Tamke, Martin and Svilans, Tom and Hüls, Jan and Kwatra, Amritansh and Jackson, Steven J and Roumen, Thijs and Thomsen, Mette Ramsgaard},
   journal={arXiv preprint arXiv:2606.19609},
   year={2026}
 }
@@ -53,7 +55,7 @@ To put our taxonomy for building drift into practice, we present Pentimento, a d
 
 ## Acknowledgements
 
-<!-- We would like to thank the 12 maker and designer participants for sharing their expertise and insights with us. We also thank John Thompson, Jo Vermeulen, Frederic Gmeiner, Kathy Cheng, Evgeny Stemasov, Sebastian Bidegain, Niti Parikh, and Amritansh Kwatra for brainstorming with us, helping with pilot studies, and providing feedback on the paper. -->
+We thank Carolyn-Nelle Preston Ichniowski, Lena Fritsch, Nadja Gaudillière-Jami, Katerina Toumpektsi, and Amin Adelzadeh for their insights during this project and Torben for sharing his wisdom, forest space, coffee, and offcuts with us. The ReShelter project has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 101019693).
 
 This page was created using the open-source [Tufte Project Template](https://github.com/tansh-kwa/tufte-project-template).
 
