@@ -33,12 +33,32 @@ In a circular economy for construction, reclaimed materials carry prior lives of
 To put our taxonomy for building drift into practice, we present Pentimento, a documentation tool that leverages video documentation and 3D Gaussian Splatting to spatially, temporally, and semantically represent on-site adaptations in relation to the designed model. Pentimento enables each stakeholder to navigate material histories in ways that reduce barriers to material reuse. Together, these contributions open pathways towards computational tools that support the on-site improvisation essential to construction with reclaimed materials, enabling more sustainable cycles of recovery, repair, and reuse.
 
 <figure>
-  <video controls="false">
-    <src>assets/buildingdrift/pentimento.mov</src>
+  <video>
+    <src>assets/buildingdrift/interface.mp4</src>
   </video>
-  <alt>This video shows our Pentimento system aligning the as-built structure as Gaussian Splats with the as-designed CAD model.</alt>
+  <alt>This video shows the Pentimento interface.</alt>
   <caption>
-    Pentimento aligns the as-built structure as Gaussian splats with the as-designed model using overlaid on-site adaptations and comments.
+    The Pentimento interface.
+  </caption>
+</figure>
+
+<figure>
+  <video>
+    <src>assets/buildingdrift/annotation.mp4</src>
+  </video>
+  <alt>This video shows annotating on-site adaptations in Pentimento.</alt>
+  <caption>
+    Annotating on-site adaptations in relation to the designed model.
+  </caption>
+</figure>
+
+<figure>
+  <video>
+    <src>assets/buildingdrift/nicer_timeline.mp4</src>
+  </video>
+  <alt>This video shows navigating the timeline of building drift in Pentimento.</alt>
+  <caption>
+    Navigating building drift over time.
   </caption>
 </figure>
 

@@ -171,7 +171,7 @@ class Metadata:
 
     def __html__(self):
         inner_html = self.title.__html__() + self.authors.__html__() + self.date.__html__() + self.venue.__html__() + self.award.__html__() + self.format_links()
-        return f"<section id = 'title-main'>{inner_html}</section>"
+        return f"<section id = 'title-main'><a class='home-link' href='/'>← Home</a>{inner_html}</section>"
 
 
 class Section:

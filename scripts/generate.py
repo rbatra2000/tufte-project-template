@@ -154,7 +154,7 @@ def regular_figure_replacement(match):
 
     if src.endswith('.mov') or src.endswith('.mp4'):
         return f"""<figure>
-                    <video width="100%" controls autoplay loop muted playsinline>
+                    <video width="100%" autoplay loop muted playsinline>
                         <source src="{src}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
